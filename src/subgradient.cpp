@@ -8,12 +8,13 @@
 #include "../include/subgradient.h"
 #include <cfloat>
 
-subgradient::subgradient(IloEnv& _env, solution& _sol, double PB, unsigned _it) : env(_env), primal_bound(PB), it_count(_it) {
-	this->sol = _sol;
+subgradient::subgradient(IloEnv& _env, solution& _sol, double PB, unsigned _it) : env(_env), sol(_sol), primal_bound(PB), it_count(_it) {
+//	this->sol = _sol;
 
 	// Initializing Subgradient Method parameters
 	sub_step = 2.0;
 	step_limit = 0.005;
+	multipliers = IloNumArray(env);
 	for(IloInt i = 0; i < _sol.get_instance().get_n(); i++)
 		multipliers.add(0);
 	best_dual = DBL_MIN;
@@ -32,6 +33,7 @@ void subgradient::run(){
 		// Solving the lagrangian relaxation based on the current multipliers
 		model relaxed(env, sol.get_instance(), sol);
 		relaxed.add_remaining_const();
+//		std::cout << "consts added!" << std::endl;
 		relaxed.add_lagrangian_obj(multipliers);
 		solver cplex(relaxed);
 		cplex.run();
@@ -68,12 +70,16 @@ void subgradient::run(){
 		// Saving the best bound
 		if(current_dual > best_dual){
 			best_dual = current_dual;
+			z_dual = current_z;
+			f_dual = current_f;
 			count = 1;
 		} else count++;
 
 		// Checking the improvement
-		if(count == it_count)
+		if(count == it_count){
 			sub_step /= 2.0;
+			count = 1;
+		}
 	}while( (current_dual != primal_bound) || (sub_step > step_limit) );
 }
 
@@ -81,7 +87,7 @@ IloNumArray subgradient::subgradients(IloNumArray2& _z){
 	int n = sol.get_instance().get_n();
 	int r = sol.get_r();
 
-	IloNumArray sub;
+	IloNumArray sub(env);
 	for(IloInt i = 0; i < n; i++){
 		IloNum count = r;
 		for(IloInt k = 0; k < n; k++)

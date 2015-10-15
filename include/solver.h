@@ -15,7 +15,7 @@
 #include "../include/typedef.hpp"
 #include "../include/UrApHMP.h"
 
-class solver : IloCplex {
+class solver : public IloCplex {
 private:
 	IloNumArray2 z;
 	IloNumArray4 f;

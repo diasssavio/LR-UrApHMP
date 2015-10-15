@@ -20,7 +20,7 @@ class subgradient {
 private:
 	// Input
 	IloEnv& env; // CPLEX environment
-	solution sol; // Solution for instance info's
+	solution& sol; // Solution for instance info's
 	double primal_bound; // Feasible solution for comparison
 	unsigned it_count; // Maximum iteration without improvement
 

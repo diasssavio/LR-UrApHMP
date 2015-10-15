@@ -21,7 +21,7 @@ T string_to(const string& s){
 }
 
 ILOSTLBEGIN
-int main(int argc, char** args){
+int main(int argc, char* args[]){
 	// Reading input file
 	int n;
 
@@ -63,7 +63,9 @@ int main(int argc, char** args){
 	IloEnv env;
 
 	try{
-		subgradient method(env, sol, 530.01, 30);
+		std::cout << "before construction" << endl;
+		subgradient method(env, sol, 530.01, 2);
+		std::cout << "before running" << endl;
 		method.run();
 
 		// Drawing the allocation graph
