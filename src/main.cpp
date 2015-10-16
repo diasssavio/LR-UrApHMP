@@ -63,19 +63,10 @@ int main(int argc, char* args[]){
 	IloEnv env;
 
 	try{
-		std::cout << "before construction" << endl;
-		subgradient method(env, sol, 530.01, 2);
-		std::cout << "before running" << endl;
+		subgradient method(env, sol, 530.01, 2, 1);
 		method.run();
-
-		// Drawing the allocation graph
-//		drawer to_draw(z, sol);
-//		ofstream dot_file("out.dot");
-//		to_draw.draw(dot_file);
-
-
 	}catch(IloException& e){
-		cerr << "Concert Exception" << e << endl;
+		cerr << "Concert Exception: " << e << endl;
 	}
 	// Closing the environment
 	env.end();

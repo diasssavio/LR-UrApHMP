@@ -157,70 +157,93 @@ void model::add_obj(){
 	add(IloMinimize(getEnv(), expr));
 }
 
-void model::add_remaining_const(){
+void model::add_remaining_const(unsigned option){
 	int n = instance.get_n();
 	int p = sol.get_p();
+	int r = sol.get_r();
+
+	// Constraints (2): attribution to at most r hubs
+	if(option != 1){
+		for(IloInt i = 0; i < n; i++){
+			IloExpr expr(getEnv());
+			for(IloInt k = 0; k < n; k++)
+				expr += z[i][k];
+			IloConstraint c2 = (expr <= r);
+			stringstream c2_name;
+			c2_name << "Cons(2)[" << i << "]";
+			c2.setName(c2_name.str().c_str());
+			add(c2);
+		}
+	}
 
 	// Constraints (3): attribution only to hubs
-	for(IloInt i = 0; i < n; i++){
-		for(IloInt k = 0; k < n; k++){
-			IloConstraint c3 = (z[i][k] <= z[k][k]);
-			stringstream c3_name;
-			c3_name << "Cons(3)[" << i << "]" << "[" << k << "]";
-			c3.setName(c3_name.str().c_str());
-			add(c3);
+	if(option != 2){
+		for(IloInt i = 0; i < n; i++){
+			for(IloInt k = 0; k < n; k++){
+				IloConstraint c3 = (z[i][k] <= z[k][k]);
+				stringstream c3_name;
+				c3_name << "Cons(3)[" << i << "]" << "[" << k << "]";
+				c3.setName(c3_name.str().c_str());
+				add(c3);
+			}
 		}
 	}
 
 	// Constraint (4): allocation of p hubs
-	IloExpr expr(getEnv());
-	for(IloInt k = 0; k < n; k++)
-		expr += z[k][k];
-	IloConstraint c4 = (expr == p);
-	stringstream c4_name;
-	c4_name << "Cons(4)";
-	c4.setName(c4_name.str().c_str());
-	add(c4);
+	if(option != 3){
+		IloExpr expr(getEnv());
+		for(IloInt k = 0; k < n; k++)
+			expr += z[k][k];
+		IloConstraint c4 = (expr == p);
+		stringstream c4_name;
+		c4_name << "Cons(4)";
+		c4.setName(c4_name.str().c_str());
+		add(c4);
+	}
 
 	// Constraints (5): traffic needs to be total routed
-	for(IloInt i = 0; i < n; i++)
-		for(IloInt j = 0; j < n; j++){
-			IloExpr expr(getEnv());
-			for(IloInt k = 0; k < n; k++)
-				for(IloInt l = 0; l < n; l++)
-					expr += f[i][j][k][l];
-			IloConstraint c5 = (expr == 1);
-			stringstream c5_name;
-			c5_name << "Cons(5)[" << i << "]" << "[" << j << "]";
-			c5.setName(c5_name.str().c_str());
-			add(c5);
-		}
-
-	// Constraints (6) & (7): Allocation of clients to hubs due to its path
-	for(IloInt i = 0; i < n; i++)
-		for(IloInt j = 0; j < n; j++)
-			for(IloInt k = 0; k < n; k++){
-				IloExpr expr(getEnv());
-				for(IloInt l = 0; l < n; l++)
-					expr += f[i][j][k][l];
-				IloConstraint c6 = (expr <= z[i][k]);
-				stringstream c6_name;
-				c6_name << "Cons(6)[" << i << "]" << "[" << j << "]" << "[" << k << "]";
-				c6.setName(c6_name.str().c_str());
-				add(c6);
-			}
-	for(IloInt i = 0; i < n; i++)
-		for(IloInt j = 0; j < n; j++)
-			for(IloInt l = 0; l < n; l++){
+	if(option != 4){
+		for(IloInt i = 0; i < n; i++)
+			for(IloInt j = 0; j < n; j++){
 				IloExpr expr(getEnv());
 				for(IloInt k = 0; k < n; k++)
-					expr += f[i][j][k][l];
-				IloConstraint c7 = (expr <= z[j][l]);
-				stringstream c7_name;
-				c7_name << "Cons(7)[" << i << "]" << "[" << j << "]" << "[" << l << "]";
-				c7.setName(c7_name.str().c_str());
-				add(c7);
+					for(IloInt l = 0; l < n; l++)
+						expr += f[i][j][k][l];
+				IloConstraint c5 = (expr == 1);
+				stringstream c5_name;
+				c5_name << "Cons(5)[" << i << "]" << "[" << j << "]";
+				c5.setName(c5_name.str().c_str());
+				add(c5);
 			}
+	}
+
+	// Constraints (6) & (7): Allocation of clients to hubs due to its path
+	if(option != 5){
+		for(IloInt i = 0; i < n; i++)
+			for(IloInt j = 0; j < n; j++)
+				for(IloInt k = 0; k < n; k++){
+					IloExpr expr(getEnv());
+					for(IloInt l = 0; l < n; l++)
+						expr += f[i][j][k][l];
+					IloConstraint c6 = (expr <= z[i][k]);
+					stringstream c6_name;
+					c6_name << "Cons(6)[" << i << "]" << "[" << j << "]" << "[" << k << "]";
+					c6.setName(c6_name.str().c_str());
+					add(c6);
+				}
+		for(IloInt i = 0; i < n; i++)
+			for(IloInt j = 0; j < n; j++)
+				for(IloInt l = 0; l < n; l++){
+					IloExpr expr(getEnv());
+					for(IloInt k = 0; k < n; k++)
+						expr += f[i][j][k][l];
+					IloConstraint c7 = (expr <= z[j][l]);
+					stringstream c7_name;
+					c7_name << "Cons(7)[" << i << "]" << "[" << j << "]" << "[" << l << "]";
+					c7.setName(c7_name.str().c_str());
+					add(c7);
+				}
+	}
 }
 
 void model::add_lagrangian_obj(IloNumArray& l_multipliers){
@@ -254,3 +277,71 @@ void model::add_lagrangian_obj(IloNumArray& l_multipliers){
 	add(IloMinimize(getEnv(), expr - dual));
 }
 
+void model::add_lagrangian_obj(IloNumArray2& l_multipliers, unsigned option){
+	int n = instance.get_n();
+	int r = sol.get_r();
+	vector< vector< double > > traffics = instance.get_traffics();
+	vector< vector< double > > distances = instance.get_distances();
+	double collection_rate = instance.get_collection_rate();
+	double transfer_rate = instance.get_transfer_rate();
+	double distribution_rate = instance.get_distribution_rate();
+
+	// Creating OF expression
+	IloExpr expr(getEnv());
+	for(IloInt i = 0; i < n; i++)
+		for(IloInt j = 0; j < n; j++)
+			for(IloInt k = 0; k < n; k++)
+				for(IloInt l = 0; l < n; l++)
+					if(option == 4) // Consts 5
+						expr += ((traffics[i][j] * ((collection_rate * distances[i][k]) + (transfer_rate * distances[k][l]) + (distribution_rate * distances[l][j]))) - l_multipliers[i][j]) * f[i][j][k][l];
+					else
+						expr += (traffics[i][j] * ((collection_rate * distances[i][k]) + (transfer_rate * distances[k][l]) + (distribution_rate * distances[l][j]))) * f[i][j][k][l];
+
+	// Adding dualized constraints
+	IloExpr dual(getEnv());
+	if(option == 2){ // Consts 3
+		for(IloInt i = 0; i < n; i++)
+			for(IloInt k = 0; k < n; k++)
+				dual += l_multipliers[i][k] * (z[k][k] - z[i][k]);
+	}
+	if(option == 4){ // Consts 5
+		for(IloInt i = 0; i < n; i++)
+			for(IloInt j = 0; j < n; j++)
+				dual -= l_multipliers[i][j];
+	}
+
+	// Adding objective function
+	add(IloMinimize(getEnv(), expr - dual));
+}
+
+void model::add_lagrangian_obj(IloNum l_multiplier){
+	int n = instance.get_n();
+	int p = sol.get_p();
+	vector< vector< double > > traffics = instance.get_traffics();
+	vector< vector< double > > distances = instance.get_distances();
+	double collection_rate = instance.get_collection_rate();
+	double transfer_rate = instance.get_transfer_rate();
+	double distribution_rate = instance.get_distribution_rate();
+
+	// Creating OF expression
+	IloExpr expr(getEnv());
+	for(IloInt i = 0; i < n; i++)
+		for(IloInt j = 0; j < n; j++)
+			for(IloInt k = 0; k < n; k++)
+				for(IloInt l = 0; l < n; l++)
+					expr += traffics[i][j] * ((collection_rate * distances[i][k]) + (transfer_rate * distances[k][l]) + (distribution_rate * distances[l][j])) * f[i][j][k][l];
+
+	// Adding dualized constraint
+	IloExpr dual(getEnv());
+	for(IloInt k = 0; k < n; k++)
+		dual += z[k][k];
+	dual -= p;
+	dual *= l_multiplier;
+
+	// Adding objective function
+	add(IloMinimize(getEnv(), expr - dual));
+}
+
+void model::add_lagrangian_obj(IloNumArray3& u, IloNumArray3& w){
+
+}

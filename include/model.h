@@ -30,8 +30,12 @@ public:
 	virtual ~model();
 
 	// Lagrangian Relaxation
-	void add_remaining_const();
-	void add_lagrangian_obj(IloNumArray&);
+	// TODO Make the formulation for constraints (6) & (7)
+	void add_remaining_const(unsigned);
+	void add_lagrangian_obj(IloNumArray&); // option = 1
+	void add_lagrangian_obj(IloNumArray2&, unsigned); // option = 2, 4
+	void add_lagrangian_obj(IloNum); // option = 3
+	void add_lagrangian_obj(IloNumArray3&, IloNumArray3&); // option = 5
 
 	// Variables
 	// traffic proportion
