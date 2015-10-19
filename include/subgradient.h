@@ -2,7 +2,7 @@
  * subgradient.h
  *
  *  Created on: Oct 15, 2015
- *      Author: savio
+ *      Author: Sávio S. Dias
  */
 
 #ifndef SUBGRADIENT_H_

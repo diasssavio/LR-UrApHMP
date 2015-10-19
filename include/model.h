@@ -2,7 +2,7 @@
  * model.h
  *
  *  Created on: Aug 21, 2015
- *      Author: savio
+ *      Author: Sávio S. Dias
  */
 
 #ifndef SRC_MODEL_H_

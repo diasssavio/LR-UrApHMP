@@ -343,5 +343,34 @@ void model::add_lagrangian_obj(IloNum l_multiplier){
 }
 
 void model::add_lagrangian_obj(IloNumArray3& u, IloNumArray3& w){
+	int n = instance.get_n();
+	int p = sol.get_p();
+	vector< vector< double > > traffics = instance.get_traffics();
+	vector< vector< double > > distances = instance.get_distances();
+	double collection_rate = instance.get_collection_rate();
+	double transfer_rate = instance.get_transfer_rate();
+	double distribution_rate = instance.get_distribution_rate();
 
+	// Creating OF expression
+	IloExpr expr(getEnv());
+	for(IloInt i = 0; i < n; i++)
+		for(IloInt j = 0; j < n; j++)
+			for(IloInt k = 0; k < n; k++)
+				for(IloInt l = 0; l < n; l++)
+					expr += ((traffics[i][j] * ((collection_rate * distances[i][k]) + (transfer_rate * distances[k][l]) + (distribution_rate * distances[l][j]))) + u[i][j][k] + w[i][j][l]) * f[i][j][k][l];
+
+	// Adding dualized constraints
+	IloExpr dual(getEnv());
+	for(IloInt i = 0; i < n; i++)
+		for(IloInt j = 0; j < n; j++){
+			IloExpr aux(getEnv());
+			for(IloInt k = 0; k < n; k++)
+				aux += u[i][j][k] * z[i][k];
+			for(IloInt l = 0; l < n; l++)
+				aux += w[i][j][l] * z[j][l];
+			dual += aux;
+		}
+
+	// Adding objective function
+	add(IloMinimize(getEnv(), expr - dual));
 }
