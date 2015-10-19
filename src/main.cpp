@@ -63,7 +63,7 @@ int main(int argc, char* args[]){
 	IloEnv env;
 
 	try{
-		subgradient method(env, sol, 530.01, 2, 1);
+		subgradient method(env, sol, 534.0, 2, 2);
 		method.run();
 	}catch(IloException& e){
 		cerr << "Concert Exception: " << e << endl;

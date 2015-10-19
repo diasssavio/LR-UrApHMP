@@ -20,7 +20,7 @@ subgradient::subgradient(IloEnv& _env, solution& _sol, double PB, unsigned _it, 
 	if(option == 1){
 		multipliers = IloNumArray(env);
 		for(IloInt i = 0; i < n; i++)
-			multipliers.add(0);
+			multipliers.add(1);
 	}
 
 	if((option == 2) || (option == 4)){
@@ -71,7 +71,6 @@ void subgradient::run(){
 		// Solving the lagrangian relaxation based on the current multipliers
 		model relaxed(env, sol.get_instance(), sol);
 		relaxed.add_remaining_const(option);
-//		std::cout << "consts added!" << std::endl;
 		if(option == 1)
 			relaxed.add_lagrangian_obj(multipliers);
 		if((option == 2) || (option == 4))
@@ -99,10 +98,11 @@ void subgradient::run(){
 			IloNum _step_size = step_size(current_dual, _subgradients);
 
 			print_sub(_subgradients);
+			std::cout << "Subgradient step size: " << _step_size << std::endl;
 
 			// Updating Lagrangian multipliers
 			for(IloInt i = 0; i < n; i++){
-				IloNum aux = multipliers[i] + _step_size * _subgradients[i];
+				IloNum aux = multipliers[i] - ( _step_size * _subgradients[i] );
 				multipliers[i] = (aux > 0) ? aux : 0;
 			}
 		}
@@ -116,18 +116,19 @@ void subgradient::run(){
 			IloNum _step_size = step_size(current_dual, _subgradients);
 
 			print_sub(_subgradients);
+			std::cout << "Subgradient step size: " << _step_size << std::endl;
 
 			// Updating Lagrangian multiplier
 			if(option == 2)
 				for(IloInt i = 0; i < n; i++)
 					for(IloInt k = 0; k < n; k++){
-						IloNum aux = multipliers_2D[i][k] + _step_size * _subgradients[i][k];
+						IloNum aux = multipliers_2D[i][k] - (_step_size * _subgradients[i][k]);
 						multipliers_2D[i][k] = (aux > 0) ? aux : 0;
 					}
 			if(option == 4)
 				for(IloInt i = 0; i < n; i++)
 					for(IloInt j = 0; j < n; j++)
-						multipliers_2D[i][j] = multipliers_2D[i][j] + _step_size * _subgradients[i][j];
+						multipliers_2D[i][j] = multipliers_2D[i][j] - (_step_size * _subgradients[i][j]);
 		}
 		if(option == 3){
 			IloNum subgradient = _subgradient(current_z);
@@ -136,7 +137,7 @@ void subgradient::run(){
 			print_sub(subgradient);
 
 			// Updating Lagrangian multiplier
-			multiplier = multiplier + _step_size * subgradient;
+			multiplier = multiplier - (_step_size * subgradient);
 		}
 		if(option == 5){
 			// TODO Implement the Subgradient method
@@ -284,6 +285,15 @@ void subgradient::print_mult(){
 		std::cout << "Multipliers: ";
 		for(IloInt i = 0; i < n; i++)
 			std::cout << multipliers[i] << " ";
+		std::cout << endl;
+	}
+	if(option == 2){
+		std::cout << "Multipliers: ";
+		for(IloInt i = 0; i < n; i++){
+			for(IloInt j = 0; j < n; j++)
+				std::cout << multipliers_2D[i][j] << " ";
+			std::cout << endl;
+		}
 		std::cout << endl;
 	}
 }
