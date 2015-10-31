@@ -20,7 +20,7 @@ subgradient::subgradient(IloEnv& _env, solution& _sol, double PB, unsigned _it, 
 	if(option == 1){
 		multipliers = IloNumArray(env);
 		for(IloInt i = 0; i < n; i++)
-			multipliers.add(1);
+			multipliers.add(0);
 	}
 
 	if((option == 2) || (option == 4)){
@@ -28,13 +28,13 @@ subgradient::subgradient(IloEnv& _env, solution& _sol, double PB, unsigned _it, 
 		for(IloInt i = 0; i < n; i++){
 			IloNumArray aux(env);
 			for(IloInt j = 0; j < n; j++)
-				aux.add(1);
+				aux.add(0);
 			multipliers_2D.add(aux);
 		}
 	}
 
 	if(option == 3)
-		multiplier = 1;
+		multiplier = 0;
 
 	if(option == 5){
 		u_multipliers_3D = IloNumArray3(env);
@@ -46,8 +46,8 @@ subgradient::subgradient(IloEnv& _env, solution& _sol, double PB, unsigned _it, 
 				IloNumArray aux(env);
 				IloNumArray _aux(env);
 				for(IloInt k = 0; k < n; k++){
-					aux.add(1);
-					_aux.add(1);
+					aux.add(0);
+					_aux.add(0);
 				}
 				aux2.add(aux);
 				_aux2.add(aux2);
@@ -67,10 +67,12 @@ void subgradient::run(){
 	double current_dual;
 	IloNumArray2 current_z;
 	IloNumArray4 current_f;
+
+	// Solving the lagrangian relaxation based on the current multipliers
+	model relaxed(env, sol.get_instance(), sol);
+	relaxed.add_remaining_const(option);
 	do{
-		// Solving the lagrangian relaxation based on the current multipliers
-		model relaxed(env, sol.get_instance(), sol);
-		relaxed.add_remaining_const(option);
+		// Adding the objective function
 		if(option == 1)
 			relaxed.add_lagrangian_obj(multipliers);
 		if((option == 2) || (option == 4))
@@ -79,6 +81,7 @@ void subgradient::run(){
 			relaxed.add_lagrangian_obj(multiplier);
 		if(option == 5)
 			relaxed.add_lagrangian_obj(u_multipliers_3D, w_multipliers_3D);
+
 		solver cplex(relaxed);
 		cplex.run();
 
@@ -92,12 +95,12 @@ void subgradient::run(){
 		std::cout << "Best dual value: " << best_dual << std::endl;
 
 		// Calculating subgradients & step size
-		// print_mult();
+		print_mult();
 		if(option == 1){
 			IloNumArray _subgradients = subgradients_1D(current_z);
 			IloNum _step_size = step_size(current_dual, _subgradients);
 
-			print_sub(_subgradients);
+//			print_sub(_subgradients);
 			std::cout << "Subgradient step size: " << _step_size << std::endl;
 
 			// Updating Lagrangian multipliers

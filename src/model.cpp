@@ -43,6 +43,9 @@ void model::init(){
 			add(z[i][k]);
 		}
 	}
+
+	phi = IloMinimize(getEnv(), IloExpr(getEnv()));
+	add(phi);
 }
 
 void model::add_const(){
@@ -154,7 +157,8 @@ void model::add_obj(){
 					expr += traffics[i][j] * ((collection_rate * distances[i][k]) + (transfer_rate * distances[k][l]) + (distribution_rate * distances[l][j])) * f[i][j][k][l];
 
 	// Adding objective function
-	add(IloMinimize(getEnv(), expr));
+	phi = IloMinimize(getEnv(), expr);
+	add(phi);
 }
 
 void model::add_remaining_const(unsigned option){
@@ -274,7 +278,8 @@ void model::add_lagrangian_obj(IloNumArray& l_multipliers){
 	}
 
 	// Adding objective function
-	add(IloMinimize(getEnv(), expr - dual));
+//	add(IloMinimize(getEnv(), expr - dual));
+	phi.setExpr(expr - dual);
 }
 
 void model::add_lagrangian_obj(IloNumArray2& l_multipliers, unsigned option){
@@ -311,7 +316,8 @@ void model::add_lagrangian_obj(IloNumArray2& l_multipliers, unsigned option){
 	}
 
 	// Adding objective function
-	add(IloMinimize(getEnv(), expr - dual));
+//	add(IloMinimize(getEnv(), expr - dual));
+	phi.setExpr(expr - dual);
 }
 
 void model::add_lagrangian_obj(IloNum l_multiplier){
@@ -339,7 +345,8 @@ void model::add_lagrangian_obj(IloNum l_multiplier){
 	dual *= l_multiplier;
 
 	// Adding objective function
-	add(IloMinimize(getEnv(), expr - dual));
+//	add(IloMinimize(getEnv(), expr - dual));
+	phi.setExpr(expr - dual);
 }
 
 void model::add_lagrangian_obj(IloNumArray3& u, IloNumArray3& w){
@@ -372,5 +379,6 @@ void model::add_lagrangian_obj(IloNumArray3& u, IloNumArray3& w){
 		}
 
 	// Adding objective function
-	add(IloMinimize(getEnv(), expr - dual));
+//	add(IloMinimize(getEnv(), expr - dual));
+	phi.setExpr(expr - dual);
 }

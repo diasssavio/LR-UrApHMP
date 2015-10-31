@@ -27,7 +27,7 @@ int main(int argc, char* args[]){
 	int n;
 
 	scanf("%d", &n);
-	double X = 1.0, alpha_1 = 0.2, delta = 1.0;
+	double X = 1.0, alpha_1 = 0.8, delta = 1.0;
 	uraphmp instance(n, X, alpha_1, delta);
 
 	vector< vector< double> > aux;
@@ -66,7 +66,7 @@ int main(int argc, char* args[]){
 	try{
 		FWChrono timer;
 		timer.start();
-		subgradient method(env, sol, 934.9, 2, 5);
+		subgradient method(env, sol, 934.89, 2, 1);
 		method.run();
 		timer.stop();
 		cout << "Total running time: " << timer.getStopTime() << endl;

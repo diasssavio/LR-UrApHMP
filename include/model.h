@@ -43,6 +43,9 @@ public:
 
 	// Assigned Hubs
 	IloNumVarArray2 z;
+
+	// Objective function
+	IloObjective phi;
 };
 
 #endif /* SRC_MODEL_H_ */
