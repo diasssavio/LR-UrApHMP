@@ -5,6 +5,7 @@
 #include <ctime>
 #include <ilcplex/ilocplex.h>
 
+#include "../include/FWChrono.h"
 #include "../include/model.h"
 #include "../include/subgradient.h"
 #include "../include/solution.h"
@@ -63,8 +64,12 @@ int main(int argc, char* args[]){
 	IloEnv env;
 
 	try{
+		FWChrono timer;
+		timer.start();
 		subgradient method(env, sol, 934.9, 2, 5);
 		method.run();
+		timer.stop();
+		cout << "Total running time: " << timer.getStopTime() << endl;
 	}catch(IloException& e){
 		cerr << "Concert Exception: " << e << endl;
 	}
