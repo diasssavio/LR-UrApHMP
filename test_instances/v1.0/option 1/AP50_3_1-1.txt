@@ -1,0 +1,55 @@
+Clique table members: 2450.
+MIP emphasis: balance optimality and feasibility.
+MIP search method: dynamic search.
+Parallel mode: none, using 1 thread.
+Root relaxation solution time = 606.01 sec. (197764.28 ticks)
+
+        Nodes                                         Cuts/
+   Node  Left     Objective  IInf  Best Integer    Best Bound    ItCnt     Gap
+
+*     0     0      integral     0   156014.5499   156014.5499   172841    0.00%
+Elapsed time = 701.34 sec. (203022.41 ticks, tree = 0.00 MB, solutions = 1)
+
+Root node processing (before b&c):
+  Real time             =  710.31 sec. (203119.03 ticks)
+Sequential b&c:
+  Real time             =    0.00 sec. (0.00 ticks)
+                          ------------
+Total (root+branch&cut) =  710.31 sec. (203119.03 ticks)
+Subgradient agility: 2
+Current dual value: 156015
+Best dual value: 2.22507e-308
+Multipliers: 
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
+Subgradient step size: 104.301
+Clique table members: 2450.
+MIP emphasis: balance optimality and feasibility.
+MIP search method: dynamic search.
+Parallel mode: none, using 1 thread.
+Root relaxation solution time = 944.43 sec. (306596.83 ticks)
+
+        Nodes                                         Cuts/
+   Node  Left     Objective  IInf  Best Integer    Best Bound    ItCnt     Gap
+
+*     0     0      integral     0   157523.3731   157523.3731   224994    0.00%
+Elapsed time = 1047.42 sec. (311856.94 ticks, tree = 0.00 MB, solutions = 1)
+
+Root node processing (before b&c):
+  Real time             = 1053.47 sec. (311953.57 ticks)
+Sequential b&c:
+  Real time             =    0.00 sec. (0.00 ticks)
+                          ------------
+Total (root+branch&cut) = 1053.47 sec. (311953.57 ticks)
+Subgradient agility: 2
+Current dual value: 157523
+Best dual value: 156015
+Multipliers: 
+0 0 0 0 0 0 0 104.301 104.301 104.301 104.301 0 0 0 104.301 104.301 104.301 104.301 208.602 208.602 104.301 104.301 208.602 208.602 208.602 208.602 104.301 104.301 104.301 208.602 104.301 0 0 0 0 0 0 0 104.301 208.602 104.301 0 0 0 0 0 0 0 0 104.301 
+Subgradient step size: 299.013
+
+Root node processing (before b&c):
+  Real time             =   85.67 sec. (4086.64 ticks)
+Sequential b&c:
+  Real time             =    0.00 sec. (0.00 ticks)
+                          ------------
+Total (root+branch&cut) =   85.67 sec. (4086.64 ticks)

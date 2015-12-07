@@ -1,0 +1,49 @@
+Found incumbent of value 830864.772252 after 2.37 sec. (736.44 ticks)
+Clique table members: 2500.
+MIP emphasis: balance optimality and feasibility.
+MIP search method: dynamic search.
+Parallel mode: none, using 1 thread.
+Root relaxation solution time = 12.82 sec. (1155.80 ticks)
+
+        Nodes                                         Cuts/
+   Node  Left     Objective  IInf  Best Integer    Best Bound    ItCnt     Gap
+
+*     0+    0                       830864.7723        0.0000     2500  100.00%
+*     0     0      integral     0    44825.3124    44825.3124     2500    0.00%
+Elapsed time = 108.05 sec. (4718.66 ticks, tree = 0.00 MB, solutions = 2)
+
+Root node processing (before b&c):
+  Real time             =  121.87 sec. (4857.02 ticks)
+Sequential b&c:
+  Real time             =    0.00 sec. (0.00 ticks)
+                          ------------
+Total (root+branch&cut) =  121.87 sec. (4857.02 ticks)
+Subgradient agility: 2
+Current dual value: 44825.3
+Best dual value: 2.22507e-308
+Multiplier: 0
+Found incumbent of value 821184.380116 after 1.34 sec. (736.44 ticks)
+Clique table members: 2500.
+MIP emphasis: balance optimality and feasibility.
+MIP search method: dynamic search.
+Parallel mode: none, using 1 thread.
+Root relaxation solution time = 175.91 sec. (46873.91 ticks)
+
+        Nodes                                         Cuts/
+   Node  Left     Objective  IInf  Best Integer    Best Bound    ItCnt     Gap
+
+*     0+    0                       821184.3801   -14520.5882    76292  101.77%
+*     0     0      integral     0   136173.3916   136173.3916    76292    0.00%
+Elapsed time = 269.56 sec. (50442.14 ticks, tree = 0.00 MB, solutions = 2)
+
+Root node processing (before b&c):
+  Real time             =  282.87 sec. (50580.50 ticks)
+Sequential b&c:
+  Real time             =    0.00 sec. (0.00 ticks)
+                          ------------
+Total (root+branch&cut) =  282.87 sec. (50580.50 ticks)
+Subgradient agility: 2
+Current dual value: 136173
+Best dual value: 44825.3
+Multiplier: -4840.2
+Found incumbent of value 806253.361160 after 1.39 sec. (736.44 ticks)

@@ -1,0 +1,97 @@
+Clique table members: 2450.
+MIP emphasis: balance optimality and feasibility.
+MIP search method: dynamic search.
+Parallel mode: none, using 1 thread.
+Root relaxation solution time = 1.12 sec. (1155.80 ticks)
+
+        Nodes                                         Cuts/
+   Node  Left     Objective  IInf  Best Integer    Best Bound    ItCnt     Gap
+
+*     0     0      integral     0    44825.3124    44825.3124     2500    0.00%
+Elapsed time = 11.11 sec. (5874.80 ticks, tree = 0.00 MB, solutions = 1)
+
+Root node processing (before b&c):
+  Real time             =   11.72 sec. (5971.42 ticks)
+Sequential b&c:
+  Real time             =    0.00 sec. (0.00 ticks)
+                          ------------
+Total (root+branch&cut) =   11.72 sec. (5971.42 ticks)
+Subgradient agility: 2
+Current dual value: 44825.3
+Best dual value: 2.22507e-308
+Multiplier: 0
+Subgradient: 
+47
+Clique table members: 2450.
+MIP emphasis: balance optimality and feasibility.
+MIP search method: dynamic search.
+Parallel mode: none, using 1 thread.
+Root relaxation solution time = 66.20 sec. (22092.78 ticks)
+
+        Nodes                                         Cuts/
+   Node  Left     Objective  IInf  Best Integer    Best Bound    ItCnt     Gap
+
+*     0     0      integral     0   133357.5594   133357.5594    53715    0.00%
+Elapsed time = 99.98 sec. (26815.29 ticks, tree = 0.00 MB, solutions = 1)
+
+Root node processing (before b&c):
+  Real time             =  103.34 sec. (26911.91 ticks)
+Sequential b&c:
+  Real time             =    0.00 sec. (0.00 ticks)
+                          ------------
+Total (root+branch&cut) =  103.34 sec. (26911.91 ticks)
+Subgradient agility: 2
+Current dual value: 133358
+Best dual value: 44825.3
+Multiplier: -4731.46
+Subgradient: 
+6
+Clique table members: 2450.
+MIP emphasis: balance optimality and feasibility.
+MIP search method: dynamic search.
+Parallel mode: none, using 1 thread.
+Root relaxation solution time = 241.35 sec. (89453.51 ticks)
+
+        Nodes                                         Cuts/
+   Node  Left     Objective  IInf  Best Integer    Best Bound    ItCnt     Gap
+
+*     0     0      integral     0   153542.7406   153542.7406   131684    0.00%
+Elapsed time = 322.15 sec. (94178.90 ticks, tree = 0.00 MB, solutions = 1)
+
+Root node processing (before b&c):
+  Real time             =  322.78 sec. (94275.53 ticks)
+Sequential b&c:
+  Real time             =    0.00 sec. (0.00 ticks)
+                          ------------
+Total (root+branch&cut) =  322.78 sec. (94275.53 ticks)
+Subgradient agility: 2
+Current dual value: 153543
+Best dual value: 133358
+Multiplier: -12283.8
+Subgradient: 
+1
+Clique table members: 2450.
+MIP emphasis: balance optimality and feasibility.
+MIP search method: dynamic search.
+Parallel mode: none, using 1 thread.
+Root relaxation solution time = 98.13 sec. (40673.04 ticks)
+
+        Nodes                                         Cuts/
+   Node  Left     Objective  IInf  Best Integer    Best Bound    ItCnt     Gap
+
+*     0     0      integral     0   156014.5499   156014.5499   145983    0.00%
+Elapsed time = 159.37 sec. (45399.74 ticks, tree = 0.00 MB, solutions = 1)
+
+Root node processing (before b&c):
+  Real time             =  162.54 sec. (45496.36 ticks)
+Sequential b&c:
+  Real time             =    0.00 sec. (0.00 ticks)
+                          ------------
+Total (root+branch&cut) =  162.54 sec. (45496.36 ticks)
+Subgradient agility: 2
+Current dual value: 156015
+Best dual value: 153543
+Multiplier: -17227.4
+Subgradient: 
+0
+Total running time: 975.2

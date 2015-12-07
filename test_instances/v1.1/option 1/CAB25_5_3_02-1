@@ -1,0 +1,25 @@
+Clique table members: 600.
+MIP emphasis: balance optimality and feasibility.
+MIP search method: dynamic search.
+Parallel mode: none, using 1 thread.
+Root relaxation solution time = 1.07 sec. (758.46 ticks)
+
+        Nodes                                         Cuts/
+   Node  Left     Objective  IInf  Best Integer    Best Bound    ItCnt     Gap
+
+*     0     0      integral     0      530.0050      530.0050     9722    0.00%
+Elapsed time = 1.68 sec. (1097.18 ticks, tree = 0.00 MB, solutions = 1)
+
+Root node processing (before b&c):
+  Real time             =    1.69 sec. (1103.31 ticks)
+Sequential b&c:
+  Real time             =    0.00 sec. (0.00 ticks)
+                          ------------
+Total (root+branch&cut) =    1.69 sec. (1103.31 ticks)
+Subgradient agility: 2
+Current dual value: 530.005
+Best dual value: 2.22507e-308
+Multipliers: 
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
+Subgradient step size: -0.000129059
+Total running time: 2.732

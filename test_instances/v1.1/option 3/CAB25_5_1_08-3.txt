@@ -1,0 +1,105 @@
+Found incumbent of value 1718.535375 after 0.08 sec. (46.55 ticks)
+Clique table members: 625.
+MIP emphasis: balance optimality and feasibility.
+MIP search method: dynamic search.
+Parallel mode: none, using 1 thread.
+Root relaxation solution time = 0.15 sec. (169.24 ticks)
+
+        Nodes                                         Cuts/
+   Node  Left     Objective  IInf  Best Integer    Best Bound    ItCnt     Gap
+
+*     0+    0                         1718.5354        0.0000     2116  100.00%
+*     0     0      integral     0      738.6457      738.6457     2116    0.00%
+Elapsed time = 0.64 sec. (399.86 ticks, tree = 0.00 MB, solutions = 2)
+
+Root node processing (before b&c):
+  Real time             =    0.65 sec. (408.59 ticks)
+Sequential b&c:
+  Real time             =    0.00 sec. (0.00 ticks)
+                          ------------
+Total (root+branch&cut) =    0.65 sec. (408.59 ticks)
+Subgradient agility: 2
+Current dual value: 738.646
+Best dual value: 2.22507e-308
+Multiplier: 0
+Subgradient: 
+20
+Found incumbent of value 1600.357654 after 0.08 sec. (46.55 ticks)
+Clique table members: 625.
+MIP emphasis: balance optimality and feasibility.
+MIP search method: dynamic search.
+Parallel mode: none, using 1 thread.
+Root relaxation solution time = 8.54 sec. (5403.56 ticks)
+
+        Nodes                                         Cuts/
+   Node  Left     Objective  IInf  Best Integer    Best Bound    ItCnt     Gap
+
+*     0+    0                         1600.3577     -147.7222    28161  109.23%
+*     0     0      integral     0     1017.6730     1017.6730    28161    0.00%
+Elapsed time = 9.01 sec. (5634.97 ticks, tree = 0.00 MB, solutions = 2)
+
+Root node processing (before b&c):
+  Real time             =    9.02 sec. (5643.70 ticks)
+Sequential b&c:
+  Real time             =    0.00 sec. (0.00 ticks)
+                          ------------
+Total (root+branch&cut) =    9.02 sec. (5643.70 ticks)
+Subgradient agility: 2
+Current dual value: 1017.67
+Best dual value: 738.646
+Multiplier: -29.5444
+Subgradient: 
+3
+Found incumbent of value 1556.578987 after 0.08 sec. (46.55 ticks)
+Clique table members: 625.
+MIP emphasis: balance optimality and feasibility.
+MIP search method: dynamic search.
+Parallel mode: none, using 1 thread.
+Root relaxation solution time = 10.91 sec. (6930.28 ticks)
+
+        Nodes                                         Cuts/
+   Node  Left     Objective  IInf  Best Integer    Best Bound    ItCnt     Gap
+
+*     0+    0                         1556.5790     -202.4455    32060  113.01%
+*     0     0      integral     0     1031.4925     1031.4925    32060    0.00%
+Elapsed time = 11.37 sec. (7161.80 ticks, tree = 0.00 MB, solutions = 2)
+
+Root node processing (before b&c):
+  Real time             =   11.38 sec. (7170.54 ticks)
+Sequential b&c:
+  Real time             =    0.00 sec. (0.00 ticks)
+                          ------------
+Total (root+branch&cut) =   11.38 sec. (7170.54 ticks)
+Subgradient agility: 2
+Current dual value: 1031.49
+Best dual value: 1017.67
+Multiplier: -40.4891
+Subgradient: 
+1
+Found incumbent of value 1535.799149 after 0.08 sec. (46.55 ticks)
+Clique table members: 625.
+MIP emphasis: balance optimality and feasibility.
+MIP search method: dynamic search.
+Parallel mode: none, using 1 thread.
+Root relaxation solution time = 14.35 sec. (9222.42 ticks)
+
+        Nodes                                         Cuts/
+   Node  Left     Objective  IInf  Best Integer    Best Bound    ItCnt     Gap
+
+*     0+    0                         1535.7991     -228.4203    36112  114.87%
+*     0     0      integral     0     1034.1102     1034.1102    36112    0.00%
+Elapsed time = 14.81 sec. (9453.98 ticks, tree = 0.00 MB, solutions = 2)
+
+Root node processing (before b&c):
+  Real time             =   14.82 sec. (9462.72 ticks)
+Sequential b&c:
+  Real time             =    0.00 sec. (0.00 ticks)
+                          ------------
+Total (root+branch&cut) =   14.82 sec. (9462.72 ticks)
+Subgradient agility: 2
+Current dual value: 1034.11
+Best dual value: 1031.49
+Multiplier: -45.6841
+Subgradient: 
+0
+Total running time: 38.326

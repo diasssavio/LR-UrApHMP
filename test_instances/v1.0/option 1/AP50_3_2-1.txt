@@ -1,0 +1,48 @@
+Clique table members: 2450.
+MIP emphasis: balance optimality and feasibility.
+MIP search method: dynamic search.
+Parallel mode: none, using 1 thread.
+Root relaxation solution time = 582.77 sec. (197764.28 ticks)
+
+        Nodes                                         Cuts/
+   Node  Left     Objective  IInf  Best Integer    Best Bound    ItCnt     Gap
+
+*     0     0      integral     0   156014.5499   156014.5499   172841    0.00%
+Elapsed time = 686.72 sec. (203022.41 ticks, tree = 0.00 MB, solutions = 1)
+
+Root node processing (before b&c):
+  Real time             =  695.99 sec. (203119.03 ticks)
+Sequential b&c:
+  Real time             =    0.00 sec. (0.00 ticks)
+                          ------------
+Total (root+branch&cut) =  695.99 sec. (203119.03 ticks)
+Subgradient agility: 2
+Current dual value: 156015
+Best dual value: 2.22507e-308
+Multipliers: 
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
+Subgradient step size: 8.86122
+Clique table members: 2450.
+MIP emphasis: balance optimality and feasibility.
+MIP search method: dynamic search.
+Parallel mode: none, using 1 thread.
+Root relaxation solution time = 701.13 sec. (223875.26 ticks)
+
+        Nodes                                         Cuts/
+   Node  Left     Objective  IInf  Best Integer    Best Bound    ItCnt     Gap
+
+*     0     0      integral     0   155997.1584   155997.1584   184863    0.00%
+Elapsed time = 797.46 sec. (229133.45 ticks, tree = 0.00 MB, solutions = 1)
+
+Root node processing (before b&c):
+  Real time             =  806.32 sec. (229230.07 ticks)
+Sequential b&c:
+  Real time             =    0.00 sec. (0.00 ticks)
+                          ------------
+Total (root+branch&cut) =  806.32 sec. (229230.07 ticks)
+Subgradient agility: 2
+Current dual value: 155997
+Best dual value: 156015
+Multipliers: 
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 8.86122 8.86122 0 0 8.86122 8.86122 8.86122 8.86122 0 0 0 8.86122 0 0 0 0 0 0 0 0 0 8.86122 0 0 0 0 0 0 0 0 0 0 
+Subgradient step size: 9.62363
